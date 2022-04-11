@@ -12,7 +12,7 @@ exec(char *path, char **argv)
 {
   char *s, *last;
   int i, off;
-  uint argc, vbase, vlimit, sp, ustack[3+MAXARG+1];
+  uint argc, sz, vbase, vlimit, sp, ustack[3+MAXARG+1];
   struct elfhdr elf;
   struct inode *ip;
   struct proghdr ph;
@@ -108,6 +108,12 @@ exec(char *path, char **argv)
   switchuvm(curproc);
   freevm(oldpgdir);
   return 0;
+
+  // Allocate a page of memory for NULL
+	sz = 0;
+	if((sz = allocuvm(pgdir, vbase, sz, sz + PGSIZE)) == 0)
+ 		goto bad;
+	clearpteu(pgdir, (char*)(sz - PGSIZE));
 
  bad:
   if(pgdir)
