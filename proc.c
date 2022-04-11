@@ -498,7 +498,6 @@ kill(int pid)
   return -1;
 }
 
-// Reference: https://github.com/conoroliver/cosc301-proj03
 int mprotect(void *addr, int len) {
 	int ret = -1;
 	uint addrint = (uint)addr;
@@ -509,7 +508,7 @@ int mprotect(void *addr, int len) {
   if(len <= 0)	{
 	  return ret;
   }
-  
+
   ret = 0;
   // do_mprotect(proc, addr);
   return ret;
