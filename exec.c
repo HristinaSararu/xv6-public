@@ -12,7 +12,7 @@ exec(char *path, char **argv)
 {
   char *s, *last;
   int i, off;
-  uint argc, sz, vbase, vlimit, sp, ustack[3+MAXARG+1];
+  uint argc, size, vbase, vlimit, sp, ustack[3+MAXARG+1];
   struct elfhdr elf;
   struct inode *ip;
   struct proghdr ph;
@@ -109,11 +109,12 @@ exec(char *path, char **argv)
   freevm(oldpgdir);
   return 0;
 
+  // Reference: https://github.com/fmuno003/CS153/tree/master/xv6/Lab2
   // Allocate a page of memory for NULL
-	sz = 0;
-	if((sz = allocuvm(pgdir, vbase, sz, sz + PGSIZE)) == 0)
+	size = 0;
+	if((size = allocuvm(pgdir, vbase, size, size + PGSIZE)) == 0)
  		goto bad;
-	clearpteu(pgdir, (char*)(sz - PGSIZE));
+	clearpteu(pgdir, (char*)(size - PGSIZE));
 
  bad:
   if(pgdir)

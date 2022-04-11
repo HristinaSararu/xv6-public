@@ -498,6 +498,41 @@ kill(int pid)
   return -1;
 }
 
+// Reference: https://github.com/conoroliver/cosc301-proj03
+int mprotect(void *addr, int len) {
+	int ret = -1;
+	uint addrint = (uint)addr;
+  //Checks if page-aligned
+  if (addrint % PGSIZE != 0) {
+    return ret;
+  }
+  if(len <= 0)	{
+	  return ret;
+  }
+  
+  ret = 0;
+  // do_mprotect(proc, addr);
+  return ret;
+}
+
+// Reference: https://github.com/conoroliver/cosc301-proj03
+int munprotect(void *addr, int len){
+  int ret = -1;
+	uint addrint = (uint)addr;
+  //Checks if page-aligned
+  if (addrint % PGSIZE != 0) {
+    return ret;
+  }
+  if(len <= 0)	{
+	  return ret;
+  }
+
+  ret = 0;
+  //do_munprotect(proc, addr);
+  return ret;
+}
+
+
 //PAGEBREAK: 36
 // Print a process listing to console.  For debugging.
 // Runs when user types ^P on console.
