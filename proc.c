@@ -498,10 +498,14 @@ kill(int pid)
   return -1;
 }
 
+
+// Reference: https://cpp.hotexamples.com/examples/-/-/do_mprotect/cpp-do_mprotect-function-examples.html
+//            https://github.com/conoroliver/cosc301-proj03
+
 int mprotect(void *addr, int len) {
 	int ret = -1;
 	uint addrint = (uint)addr;
-  //Checks if page-aligned
+  //Check if page-aligned
   if (addrint % PGSIZE != 0) {
     return ret;
   }
@@ -510,15 +514,13 @@ int mprotect(void *addr, int len) {
   }
 
   ret = 0;
-  // do_mprotect(proc, addr);
   return ret;
 }
 
-// Reference: https://github.com/conoroliver/cosc301-proj03
 int munprotect(void *addr, int len){
   int ret = -1;
 	uint addrint = (uint)addr;
-  //Checks if page-aligned
+  //Check if page-aligned
   if (addrint % PGSIZE != 0) {
     return ret;
   }
@@ -527,7 +529,6 @@ int munprotect(void *addr, int len){
   }
 
   ret = 0;
-  //do_munprotect(proc, addr);
   return ret;
 }
 

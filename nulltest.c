@@ -5,7 +5,7 @@
 
 // Reference: https://github.com/conoroliver/cosc301-proj03
 int main(int argc, char *argv[]) {
-  int *intptr = NULL;
-  printf(1, "Dereferencing a NULL pointer looks like: %p\n", *intptr);
+  int *p = NULL;
+  printf(1, "Dereferencing a NULL pointer: %p\n", *p);
   exit();
 }

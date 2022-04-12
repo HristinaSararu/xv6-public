@@ -109,13 +109,6 @@ exec(char *path, char **argv)
   freevm(oldpgdir);
   return 0;
 
-  // Reference: https://github.com/fmuno003/CS153/tree/master/xv6/Lab2
-  // Allocate a page of memory for NULL
-	size = 0;
-	if((size = allocuvm(pgdir, vbase, size, size + PGSIZE)) == 0)
- 		goto bad;
-	clearpteu(pgdir, (char*)(size - PGSIZE));
-
  bad:
   if(pgdir)
     freevm(pgdir);
